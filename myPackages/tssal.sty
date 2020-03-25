@@ -1,0 +1,406 @@
+\ProvidesPackage{tssal}[2020/02/18]
+% TODO: write options
+
+% Options
+\newif\iftssaldraft
+\DeclareOption{draft}{\tssaldrafttrue}
+\newif\iftssallessspace
+\DeclareOption{lessspace}{\tssallessspacetrue}
+\ProcessOptions\relax
+
+\iftssaldraft
+	\usepackage{draftwatermark}
+	\SetWatermarkAngle{50}
+	\SetWatermarkLightness{0.75}
+	\SetWatermarkFontSize{32pt}
+	\SetWatermarkScale{5}
+	\SetWatermarkText{DRAFT}
+\fi
+
+% Required Packages
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+
+% Useful Packages
+\usepackage[utf8]{inputenc}
+
+% Title Formatting
+\usepackage{titling}
+\pretitle{
+	\begin{center}
+	~\\ \vspace{-10em}
+	\Large\bfseries\boldmath
+}
+\posttitle{~\\ \vspace{-0.1em} \end{center}}
+
+\preauthor{\begin{center}}
+\postauthor{~\\ \vspace{-0.2em} \end{center}}
+
+\predate{\begin{center}}
+\postdate{~\\ \end{center}}
+
+\title{~\vspace{-2em}}
+\author{~\vspace{-2em}}
+\date{~\vspace{-5ex}}
+
+% Document Formatting
+\usepackage[margin=1in]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+\setlength{\parskip}{1em}
+\newcommand{\toc}{
+	\setlength{\parskip}{0em}
+	\tableofcontents
+	\setlength{\parskip}{1em}
+}
+\usepackage{enumitem}
+\usepackage[labelfont=it,font=footnotesize]{caption}
+\iftssallessspace
+	\newcommand\sectionprelude{\vspace{-1.3\baselineskip}}
+	\newcommand\sectionpostlude{\vspace{-0.8\baselineskip}}
+	\let\origsection\section
+	\renewcommand\section{\@ifstar{\starsection}{\nostarsection}}
+	\newcommand\nostarsection[1]{\vspace{0.8\baselineskip}\sectionprelude\origsection{#1}\sectionpostlude}
+	\newcommand\starsection[1]{\vspace{0.8\baselineskip}\sectionprelude\origsection*{#1}\sectionpostlude}
+	\let\origsubsection\subsection
+	\renewcommand\subsection{\@ifstar{\starsubsection}{\nostarsubsection}}
+	\newcommand\nostarsubsection[1]{\sectionprelude\origsubsection{#1}\sectionpostlude}
+	\newcommand\starsubsection[1]{\sectionprelude\origsubsection*{#1}\sectionpostlude}
+	\let\origsubsubsection\subsubsection
+	\renewcommand\subsubsection{\@ifstar{\starsubsubsection}{\nostarsubsubsection}}
+	\newcommand\nostarsubsubsection[1]{\sectionprelude\origsubsubsection{#1}\sectionpostlude}
+	\newcommand\starsubsubsection[1]{\sectionprelude\origsubsubsection*{#1}\sectionpostlude}
+	\setlist{topsep=0pt}
+\fi
+\newcommand{\ds}{\displaystyle}
+
+% Header/Footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{3em}
+
+\lhead{\thetitle}
+\rhead{\theauthor}
+\cfoot{\thepage}
+
+% Referencing
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\usepackage{nameref}
+\newcommand{\email}[1]{\href{mailto:#1}{#1}}
+
+% Theorems, Proofs, Problems, Solutions
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems}
+\theoremstyle{definition}
+
+\newtcolorbox{redboxtitle}[1]{
+	colback = red!5,
+	colframe = red!75!black,
+	fonttitle = \bfseries,
+	title = {#1}
+}
+\newtcolorbox{greenboxtitle}[1]{
+	colback = green!5,
+	colframe = green!75!black,
+	fonttitle = \bfseries,
+	title = {#1}
+}
+\newtcolorbox{blueboxtitle}[1]{
+	colback = blue!5,
+	colframe = blue!75!black,
+	fonttitle = \bfseries,
+	title = {#1}
+}
+\newtcolorbox{blackboxtitle}[1]{
+	colback = black!5,
+	colframe = black!75!black,
+	fonttitle = \bfseries,
+	title = {#1}
+}
+\newtcolorbox{redbox}{
+	colback = red!5,
+	colframe = red!75!black
+}
+\newtcolorbox{greenbox}{
+	colback = green!5,
+	colframe = green!75!black
+}
+\newtcolorbox{bluebox}{
+	colback = blue!5,
+	colframe = blue!75!black
+}
+\newtcolorbox{blackbox}{
+	colback = black!5,
+	colframe = black!75!black
+}
+
+\newtcbtheorem[number within = section]{theorem}{Theorem}{
+	colback = green!5,
+	colframe = green!35!black,
+	fonttitle = \bfseries,
+}{thm}
+\newtcbtheorem[use counter from = theorem]{corollary}{Corollary}{
+	colback = green!5,
+	colframe = green!35!black,
+	fonttitle = \bfseries
+}{cor}
+\newtcbtheorem[use counter from = theorem]{lemma}{Lemma}{
+	colback = green!5,
+	colframe = green!35!black,
+	fonttitle = \bfseries
+}{lem}
+\newtcbtheorem[use counter from = theorem]{proposition}{Proposition}{
+	colback = green!5,
+	colframe = green!35!black,
+	fonttitle = \bfseries
+}{prop}
+\newtcbtheorem[use counter from = theorem]{fact}{Fact}{
+	colback = green!5,
+	colframe = green!35!black,
+	fonttitle = \bfseries
+}{fact}
+\newtcbtheorem[use counter from = theorem]{conjecture}{Conjecture}{
+	colback = green!5,
+	colframe = green!75!black,
+	fonttitle = \bfseries
+}{conj}
+\newtcbtheorem[use counter from = theorem]{hypothesis}{Hypothesis}{
+	colback = green!5,
+	colframe = green!75!black,
+	fonttitle = \bfseries
+}{hyp}
+\newtcbtheorem[use counter from = theorem]{problem}{Problem}{
+	colback = blue!5,
+	colframe = blue!75!black,
+	fonttitle = \bfseries
+}{prob}
+\newtcbtheorem[use counter from = theorem]{question}{Question}{
+	colback = blue!5,
+	colframe = blue!75!black,
+	fonttitle = \bfseries
+}{ques}
+\newtcbtheorem[use counter from = theorem]{exampleproblem}{Example Problem}{
+	colback = blue!5,
+	colframe = blue!75!black,
+	fonttitle = \bfseries
+}{exprob}
+\newtcbtheorem[use counter from = theorem]{example}{Example}{
+	colback=Turquoise!5,
+	colframe=Turquoise!70,
+	fonttitle=\bfseries,
+	sharp corners
+}{ex}
+\newtcbtheorem[use counter from = theorem]{definition}{Definition}{
+	colback = black!5,
+	colframe = black!75!black,
+	fonttitle = \bfseries
+}{def}
+\newenvironment{remark}{\tcolorbox[colback = black!5, colframe = black!75!black]\textbf{Remark.}}{\endtcolorbox}
+
+\newenvironment{intheorem}{\par\noindent\ignorespaces\textbf{Theorem.}}{\par\ignorespacesafterend}
+\newenvironment{incorollary}{\par\noindent\ignorespaces\textbf{Corollary.}}{\par\ignorespacesafterend}
+\newenvironment{inlemma}{\par\noindent\ignorespaces\textbf{Lemma.}}{\par\ignorespacesafterend}
+\newenvironment{inproposition}{\par\noindent\ignorespaces\textbf{Proposition.}}{\par\ignorespacesafterend}
+\newenvironment{infact}{\par\noindent\ignorespaces\textbf{Fact.}}{\par\ignorespacesafterend}
+\newenvironment{inconjecture}{\par\noindent\ignorespaces\textbf{Conjecture.}}{\par\ignorespacesafterend}
+\newenvironment{inhypothesis}{\par\noindent\ignorespaces\textbf{Hypothesis.}}{\par\ignorespacesafterend}
+\newenvironment{inproblem}{\par\noindent\ignorespaces\textbf{Problem.}}{\par\ignorespacesafterend}
+\newenvironment{inquestion}{\par\noindent\ignorespaces\textbf{Question.}}{\par\ignorespacesafterend}
+\newenvironment{inexampleproblem}{\par\noindent\ignorespaces\textbf{Example Problem.}}{\par\ignorespacesafterend}
+\newenvironment{inexample}{\par\noindent\ignorespaces\textbf{Example.}}{\par\ignorespacesafterend}
+\newenvironment{inremark}{\par\noindent\ignorespaces\textbf{Remark.}}{\par\ignorespacesafterend}
+\newtheorem{numberedintheorem}{Theorem}
+\newtheorem{numberedincorollary}{Corollary}
+\newtheorem{numberedinlemma}{Lemma}
+\newtheorem{numberedinproposition}{Proposition}
+\newtheorem{numberedinfact}{Fact}
+\newtheorem{numberedinconjecture}{Conjecture}
+\newtheorem{numberedinhypothesis}{Hypothesis}
+\newtheorem{numberedinproblem}{Problem}
+\newtheorem{numberedinquestion}{Question}
+\newtheorem{numberedinexampleproblem}{Example Problem}
+\newtheorem{numberedinexample}{Example}
+\newtheorem{numberedinremark}{Remark}
+
+\newenvironment{indefinition}{\par\noindent\ignorespaces\textbf{Definition.}}{\par\ignorespacesafterend}
+\newenvironment{claim}{\par\noindent\ignorespaces\textbf{Claim.}}{\par\ignorespacesafterend}
+\newenvironment{observation}{\par\noindent\ignorespaces\textbf{Observation.}}{\par\ignorespacesafterend}
+\newenvironment{solutionlemma}{\par\noindent\ignorespaces\textbf{Lemma:}}{\par\ignorespacesafterend}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newenvironment{solution}{\pushQED{\qed}\par\noindent\ignorespaces}{\popQED\par\ignorespacesafterend}
+\renewenvironment{proof}{\pushQED{\qed}\par\noindent\ignorespaces\emph{Proof.}}{\popQED\par\ignorespacesafterend}
+\newenvironment{lemmaproof}{\pushQED{\hfill$\square$}\par\noindent\ignorespaces\emph{Proof.}}{\popQED\par\ignorespacesafterend}
+
+% quote box still under construction
+\newcommand{\quotebox}[2]{
+	\begin{tcolorbox}[colback=black!5!white,colframe=black!75!black,sharp corners=downhill]
+		``\textit{#1}''
+		
+		\medskip
+		
+		\textit{\textbf{\footnotesize #2}}
+	\end{tcolorbox}
+}
+
+% Drawing
+\usepackage[inline]{asymptote}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\usepackage{tikzducks}
+\usetikzlibrary{calc,ducks}
+
+% Extras
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{systeme}
+\usepackage{mathdots}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem}
+\DeclareTextFontCommand{\vocab}{\color{blue}\bfseries\em}
+
+% Problem Database
+\newcommand{\pdb}[1]{\input{"/Users/tristanshin/Dropbox/LaTeX/ProblemDatabase/P/#1".tex}\unskip}
+\newcommand{\sdb}[1]{\input{"/Users/tristanshin/Dropbox/LaTeX/ProblemDatabase/S/#1".tex}\unskip}
+\newcommand{\ldb}[1]{\input{"/Users/tristanshin/Dropbox/LaTeX/ProblemDatabase/L/#1".tex}\unskip}
+\newcommand{\pdbl}[1]{(\input{"/Users/tristanshin/Dropbox/LaTeX/ProblemDatabase/L/#1".tex}\unskip) \pdb{#1}}
+
+% PERSONAL DEFINITIONS
+
+% Algebra
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\Bohr}{Bohr}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\fix}{fix}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\img}{img}
+\newcommand{\injto}{\hookrightarrow}
+\newcommand{\innerproduct}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\ip}[2]{\innerproduct{#1}{#2}}
+\newcommand{\norm}[1]{\left\lvert #1 \right\rvert}
+\DeclareMathOperator{\nul}{nul}
+\DeclareMathOperator{\Nul}{Nul}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\srank}{slice-rank}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\surjto}{\twoheadrightarrow}
+\DeclareMathOperator{\tow}{tow}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\trace}{tr}
+\newcommand{\tpose}{\intercal}
+\newcommand{\transpose}{\intercal}
+\newcommand{\vecabs}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vecb}[1]{\mathbf{#1}}
+% Analysis
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\cis}{cis}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\eps}{\epsilon}
+\DeclareMathOperator{\im}{im}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Log}{Log}
+\newcommand{\LT}{\mathcal{L}}
+\DeclareMathOperator{\re}{re}
+\let\Re\relax
+\DeclareMathOperator{\Re}{Re}
+% Calculus
+\let\d\relax
+\newcommand{\d}{\,\mathrm{d}}
+\newcommand{\dt}{\d t}
+\newcommand{\dw}{\d w}
+\newcommand{\dx}{\d x}
+\newcommand{\dy}{\d y}
+\newcommand{\dz}{\d z}
+\newcommand{\dtheta}{\d\theta}
+\newcommand{\dphi}{\d\phi}
+\newcommand{\dvarphi}{\d\varphi}
+\newcommand{\dr}{\d r}
+\newcommand{\du}{\d u}
+\newcommand{\dv}{\d v}
+\newcommand{\dxy}{\dx\dy}
+\newcommand{\dyx}{\dy\dx}
+\newcommand{\dxz}{\dx\dz}
+\newcommand{\dzx}{\dz\dx}
+\newcommand{\dyz}{\dy\dz}
+\newcommand{\dzy}{\dz\dy}
+\newcommand{\dxyz}{\dx\dy\dz}
+\newcommand{\dxzy}{\dx\dz\dy}
+\newcommand{\dyxz}{\dy\dx\dz}
+\newcommand{\dyzx}{\dy\dz\dx}
+\newcommand{\dzxy}{\dz\dx\dy}
+\newcommand{\dzyx}{\dz\dy\dx}
+\newcommand{\dds}{\frac{\d}{\d s}}
+\newcommand{\ddt}{\frac{\d}{\dt}}
+\newcommand{\ddw}{\frac{\d}{\dw}}
+\newcommand{\ddx}{\frac{\d}{\dx}}
+\newcommand{\ddy}{\frac{\d}{\dy}}
+\newcommand{\ddz}{\frac{\d}{\dz}}
+% Discrete
+\DeclareMathOperator{\sgn}{sgn}
+% Geometry
+\newcommand{\arc}[1]{\wideparen{#1}}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\vol}{vol}
+% Graph Theory
+\DeclareMathOperator{\Cay}{Cay}
+\DeclareMathOperator{\codeg}{codeg}
+\DeclareMathOperator{\crossing}{cr}
+\DeclareMathOperator{\ex}{ex}
+% Number Theory
+\newcommand{\jacobi}[2]{\left(\frac{#1}{#2}\right)}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+\DeclareMathOperator{\ord}{ord}
+% Parentheses/Brackets
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\parenbrac}[1]{\left( #1 \right]}
+\newcommand{\bracparen}[1]{\left[ #1 \right)}
+\newcommand{\curlybrace}[1]{\left\{ #1 \right\}}
+% Probability Theory/Statistics
+\DeclareMathOperator{\EE}{\mathbb{E}}
+\newcommand{\EV}[1]{\mathbb{E}\left[#1\right]}
+\renewcommand{\P}[1]{\mathbb{P}\left(#1\right)}
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\DeclareMathOperator{\Var}{Var}
+% Sets
+\newcommand{\card}[1]{\left\lvert #1 \right\rvert}
+\DeclareMathOperator{\CC}{\mathbb{C}}
+\DeclareMathOperator{\FF}{\mathbb{F}}
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\QQ}{\mathbb{Q}}
+\DeclareMathOperator{\RR}{\mathbb{R}}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\st}{\,\middle\vert\,}
+\newcommand{\Zmod}[1]{\mathbb{Z}/#1\mathbb{Z}}
+\DeclareMathOperator{\ZZ}{\mathbb{Z}}
+% Special Functions
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\cycprod}{\displaystyle\prod_{\mathrm{cyc}}}
+\newcommand{\cycsum}{\displaystyle\sum_{\mathrm{cyc}}}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\fracpart}[1]{\left\{#1\right\}}
+\newcommand{\symprod}{\displaystyle\prod_{\mathrm{sym}}}
+\newcommand{\symsum}{\displaystyle\sum_{\mathrm{sym}}}

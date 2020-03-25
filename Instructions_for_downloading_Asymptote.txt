@@ -1,0 +1,16 @@
+1. Download Asymptote from https://sourceforge.net/projects/asymptote/
+2. The file that you download will have name in the form "asymptote-x.xx.src.tgz", so replace all instances of x.xx with the version number in the commands below.
+3. Run the following commands in terminal:
+	
+	cd ~/Library
+	mkdir Asymptote
+	mv ~/Downloads/asymptote-x.xx.src.tgz Asymptote
+	cd Asymptote
+	gunzip asymptote-x.xx.src.tgz
+	tar -xf asymptote-x.xx.src.tar
+	cd asymptote-x.xx
+	./configure
+	make all
+	sudo make install
+
+4. At the last step, you will have to enter the root password.

@@ -1,0 +1,81 @@
+\ProvidesPackage{vSDMC-beamer}[2020/03/24]
+
+% Main packages
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[utf8]{inputenc}
+
+% Display
+\usetheme{CambridgeUS}
+\usecolortheme{orchid}
+\institute{vSDMC}
+\beamertemplatenavigationsymbolsempty
+
+% Referencing
+\newcommand{\email}[1]{\href{mailto:#1}{#1}}
+
+% Images and Diagrams
+\usepackage{graphicx}
+\usepackage{asymptote}
+\usepackage{tikz-cd}
+\usepackage{tikzducks}
+
+% Boxes
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{claim}{Claim}
+\newtheorem{hypothesis}{Hypothesis}
+\newtheorem{question}{Question}
+\newtheorem{observation}{Observation}
+\newtheorem{remark}{Remark}
+
+% Shortcuts
+
+% Sets of numbers
+\DeclareMathOperator{\NN}{\mathbb{N}} % natural numbers
+\DeclareMathOperator{\ZZ}{\mathbb{Z}} % integers
+\DeclareMathOperator{\QQ}{\mathbb{Q}} % rationals
+\DeclareMathOperator{\RR}{\mathbb{R}} % reals
+\DeclareMathOperator{\CC}{\mathbb{C}} % complex numbers
+\DeclareMathOperator{\FF}{\mathbb{F}} % finite field
+\newcommand{\Zmod}[1]{\mathbb{Z}/#1\mathbb{Z}} % Z mod nZ
+
+% Numbers
+\DeclareMathOperator{\lcm}{lcm} % lcm
+\DeclareMathOperator{\sgn}{sgn} % sign
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} % magnitude/cardinality
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor} % floor
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil} % ceiling
+\newcommand{\eps}{\epsilon} % epsilon
+\let\Re\relax\DeclareMathOperator{\Re}{Re} % real part
+\let\Im\relax\DeclareMathOperator{\Im}{Im} % imaginary part
+\newcommand{\conj}[1]{\overline{#1}} % conjugate
+\let\d\relax\newcommand{\d}{\mathop{}\!\mathrm{d}} % differential operator
+
+% Geometry
+\DeclareMathOperator{\diam}{diam} % diameter
+\DeclareMathOperator{\area}{area} % area
+\DeclareMathOperator{\vol}{vol} % volume
+\newcommand{\arc}[1]{\wideparen{#1}} % arc
+
+% Statistics
+\DeclareMathOperator{\PP}{\mathbb{P}} % probability
+\DeclareMathOperator{\EE}{\mathbb{E}} % expectation
+\DeclareMathOperator{\Var}{Var} % variance
+
+% Abstract Algebra
+\DeclareMathOperator{\id}{id} % group identity
+\DeclareMathOperator{\ord}{ord} % order
+
+% Sets and Functions
+\let\complement\relax
+\newcommand{\complement}{\mathsf{c}} % set complement
+\DeclareMathOperator{\img}{img} % image
+\newcommand{\injto}{\hookrightarrow} % injective to
+\newcommand{\surjto}{\twoheadrightarrow} % surjective to
+
+% Linear Algebra
+\newcommand{\vecb}[1]{\mathbf{#1}} % vector
+\newcommand{\vecabs}[1]{\left\lVert#1\right\rVert} % vector magnitude
+\DeclareMathOperator{\rank}{rank} % rank
+\DeclareMathOperator{\tr}{tr} % trace
+\newcommand{\transpose}{\intercal} % transpose
