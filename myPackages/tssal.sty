@@ -1,4 +1,5 @@
-\ProvidesPackage{tssal}[2020/02/18]
+\ProvidesPackage{tssal}[2020/03/24]
+% NEEDS HEAVY REWRITE
 % TODO: write options
 
 % Options
@@ -316,16 +317,13 @@
 \newcommand{\conj}[1]{\overline{#1}}
 \newcommand{\eps}{\epsilon}
 \DeclareMathOperator{\im}{im}
-\let\Im\relax
-\DeclareMathOperator{\Im}{Im}
+\let\Im\relax\DeclareMathOperator{\Im}{Im}
 \DeclareMathOperator{\Log}{Log}
 \newcommand{\LT}{\mathcal{L}}
 \DeclareMathOperator{\re}{re}
-\let\Re\relax
-\DeclareMathOperator{\Re}{Re}
+\let\Re\relax\DeclareMathOperator{\Re}{Re}
 % Calculus
-\let\d\relax
-\newcommand{\d}{\,\mathrm{d}}
+\let\d\relax\newcommand{\d}{\,\mathrm{d}}
 \newcommand{\dt}{\d t}
 \newcommand{\dw}{\d w}
 \newcommand{\dx}{\d x}
@@ -386,6 +384,8 @@
 % Sets
 \newcommand{\card}[1]{\left\lvert #1 \right\rvert}
 \DeclareMathOperator{\CC}{\mathbb{C}}
+\newcommand{\comp}{\mathsf{c}}
+\let\complement\relax\newcommand{\complement}{\mathsf{c}}
 \DeclareMathOperator{\FF}{\mathbb{F}}
 \DeclareMathOperator{\NN}{\mathbb{N}}
 \DeclareMathOperator{\QQ}{\mathbb{Q}}
