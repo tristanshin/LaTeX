@@ -1,2 +1,10 @@
 latexmk/
 Testing/
+Templates/vSDMC-example.aux
+Templates/vSDMC-example.log
+Templates/vSDMC-example.nav
+Templates/vSDMC-example.out
+Templates/vSDMC-example.snm
+Templates/vSDMC-example.synctex.gz
+Templates/vSDMC-example.toc
+Templates/vSDMC-example.vrb
