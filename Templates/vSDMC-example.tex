@@ -1,0 +1,211 @@
+\documentclass[mathserif]{beamer}
+\usepackage{vSDMC-beamer}
+\usepackage{verbatim}
+
+\title[vSDMC Example]{Example vSDMC Beamer}
+\subtitle{A walkthrough of some features}
+\author{Tristan Shin}
+\date{25 Mar 2020}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Slides}
+
+\begin{frame}[fragile]\frametitle{Slides}
+	This is a \vocab{frame} (also known as a \vocab{slide}).
+	\pause
+	
+	You can split a single frame into broken parts for presentation.
+	\pause
+	
+	Just put \verb|\pause| at the point where you want to break the slide.
+	\pause
+	
+	You should not put \verb|\pause| at the end of a slide; see this slide for an example of what happens.
+	\pause
+\end{frame}
+
+\begin{frame}\frametitle{\texttt{fragile} option}
+	Sometimes, using packages (such as \texttt{asymptote} and \texttt{verbatim}) will require the \texttt{fragile} option on any slide using it.
+	\pause
+	
+	For example, the previous slide uses \texttt{verbatim} to display a LaTeX command properly, so it requires the \texttt{fragile} option.
+	\pause
+	
+	This slide does not use any special packages though, so we do not require \texttt{fragile} here.
+\end{frame}
+
+\begin{frame}\frametitle{\texttt{itemize} and \texttt{enumerate} environments}
+	The \texttt{itemize} and \texttt{enumerate} environments are still around.
+	\begin{itemize}
+		\item Item 1
+		\item Item 2
+	\end{itemize}
+	\begin{enumerate}
+		\item Item 1
+		\item Item 2
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{\texttt{itemize} and \texttt{enumerate} environments}
+	If you want to break the slide after each item, use the \texttt{<+->} option.
+	\pause
+	\begin{itemize}[<+->]
+		\item Item 1
+		\item Item 2
+	\end{itemize}
+	\begin{enumerate}[<+->]
+		\item Item 1
+		\item Item 2
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Emphasis}
+	In addition to the usual bold, italics, and underlining, you can do a few additional things:
+	\pause
+	\begin{itemize}[<+->]
+		\item \verb|\alert| gives you \alert{red standout text}.
+		\item \verb|\boldalert| gives you \boldalert{the same but in bold}.
+		\item \verb|\vocab| gives you \vocab{blue, intended for definitions}.
+	\end{itemize}
+\end{frame}
+
+\section{Blocks}
+
+\begin{frame}\frametitle{Blocks}
+	Blocks are similar to boxes from the \texttt{tcolorbox} package.
+	\begin{block}{A block}
+		This is a \vocab{block}. It is quite simple to use.
+	\end{block}
+	\pause
+	\begin{alertblock}{A different block}
+		This is an \vocab{alert block}. Its color is different because it is meant to stand out.
+	\end{alertblock}
+	\pause
+	\begin{examples}
+		This is an \vocab{example block}. Its color differentiates statements from examples.
+	\end{examples}
+\end{frame}
+
+\begin{frame}\frametitle{Other blocks}
+	There are other blocks modeled after the main three.
+	\pause
+	\begin{theorem}
+		Beamer is cool!
+	\end{theorem}
+	\begin{corollary}[Wright, 2003]
+		Everyone should use beamer!
+	\end{corollary}
+\end{frame}
+
+\begin{frame}\frametitle{Other blocks}
+	Here is a list of environments that act just like \texttt{theorem}:
+	\begin{itemize}
+		\item \texttt{theorem}, \texttt{corollary}, and \texttt{lemma}
+		\item \texttt{proposition}, \texttt{claim}, \texttt{fact}, and \texttt{observation}
+		\item \texttt{conjecture} and \texttt{hypothesis}
+		\item \texttt{problem}, \texttt{exercise}, and \texttt{question}
+		\item \texttt{definition} and \texttt{remark}
+	\end{itemize}
+	See the next two slides for examples.
+\end{frame}
+
+\begin{frame}\frametitle{Other blocks}
+	\begin{lemma}[Ruzsa covering lemma]
+		Let $X$ band $B$ be subsets of an abelian group. If $|X+B|\leq K|B|$, then there exist $T\subseteq X$ with $|T|\leq K$ such that $X\subseteq T+B-B$.
+	\end{lemma}
+	\begin{claim}
+		There are finitely many countries.
+	\end{claim}
+	\begin{conjecture}[Riemann hypothesis]
+		For all $n\in\NN$,
+		\[
+			\sum_{d\mid n}d\leq H_n+(\ln H_n)e^{H_n}.
+		\]
+	\end{conjecture}
+	Note that \texttt{conjecture} and \texttt{hypothesis} are a lighter shade of blue.
+\end{frame}
+
+\begin{frame}\frametitle{Other blocks}
+	\begin{problem}
+		Determine all possible values of the expression
+		\[
+			A^3+B^3+C^3-3ABC
+		\]
+		where $A$, $B$, and $C$ are nonnegative integers.
+	\end{problem}
+	\begin{definition}[Continuity]
+		Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces and $f\colon X\to Y$ be a function. For $x_0\in X$, we say that \vocab{$f$ is continuous at $x_0$} if for all $\eps>0$, there exists a $\delta>0$ such that $d_X(x,x_0)<\delta$ implies $d_Y(f(x),f(x_0))<\eps$.
+	\end{definition}
+	Note that \texttt{definition} and \texttt{remark} are black.
+\end{frame}
+
+\begin{frame}\frametitle{Proof block}
+	The \texttt{proof} environment has also been transformed into a block.
+	\begin{proof}
+		Left as an exercise to the reader.
+	\end{proof}
+	\pause
+	This environment also has an option to let you retitle the proof.
+	\begin{proof}[Proof sketch]
+		Still left as an exercise to the reader.
+	\end{proof}
+\end{frame}
+
+\begin{frame}\frametitle{Proof block}
+	A common mistake in spacing is to leave the $\square$ dangling.
+	\begin{proof}
+		We have that
+		\begin{align*}
+			\sec^2\theta-1 &= \frac{1-\cos^2\theta}{\cos^2\theta} \\
+			&= \frac{\sin^2\theta}{\cos^2\theta} \\
+			&= \tan^2\theta
+		\end{align*}
+	\end{proof}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Proof block}
+	To fix this, use \verb|\qedhere| where the end of your last line is.
+	\begin{proof}
+		We have that
+		\begin{align*}
+			\sec^2\theta-1 &= \frac{1-\cos^2\theta}{\cos^2\theta} \\
+			&= \frac{\sin^2\theta}{\cos^2\theta} \\
+			&= \tan^2\theta
+			\qedhere
+		\end{align*}
+	\end{proof}
+	\pause
+	You will need this when you use \texttt{itemize}, \texttt{enumerate}, or any form of display math environment to end your proof.
+\end{frame}
+
+\section{Preamble}
+
+\begin{frame}\frametitle{Shortcuts}
+	There are several shortcuts that are included in \texttt{vSDMC-beamer}. Check them out in the file!
+	\pause
+	
+	Feel free to import other packages in the preamble, or make your own shortcuts. Common packages to import include
+	\begin{itemize}
+		\item \texttt{asymptote}
+		\item \texttt{tikz-cd} (highly recommend checking out \texttt{tikzducks} too for fun)
+	\end{itemize}
+	\pause
+	Keep in mind that the more packages you import, the slower your presentation will compile. This is especially important for live-TeXing.
+	\pause
+	
+	For example, this presentation takes about 3 seconds to compile (only additional import is \texttt{verbatim}). This is probably fine for live-TeXing.
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}\frametitle{Good luck!}
+	One final note: LaTeX table of contents requires two compilations to update correctly. So if you create a new frame or change references, the first compilation after this may have incorrect referencing or page numbers. Be wary of this.
+	\pause
+	
+	Have fun creating your own beamer! For questions, contact me at \email{shint@mit.edu}.
+\end{frame}
+
+\end{document}

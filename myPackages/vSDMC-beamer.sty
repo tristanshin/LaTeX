@@ -3,30 +3,50 @@
 % Main packages
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage[utf8]{inputenc}
+\usepackage{mathtools}
 
 % Display
 \usetheme{CambridgeUS}
 \usecolortheme{orchid}
+\setbeamerfont{block body}{shape = \upshape}
 \institute{vSDMC}
 \beamertemplatenavigationsymbolsempty
+\setlength{\parskip}{1em}
+
+% Images and Diagrams
+\usepackage{graphicx}
 
 % Referencing
 \newcommand{\email}[1]{\href{mailto:#1}{#1}}
 
-% Images and Diagrams
-\usepackage{graphicx}
-\usepackage{asymptote}
-\usepackage{tikz-cd}
-\usepackage{tikzducks}
+% Word emphasis
+\newcommand{\boldalert}[1]{\alert{\textbf{#1}}}
+\DeclareTextFontCommand{\vocab}{\color{blue}\bfseries\em}
 
 % Boxes
 \newtheorem{proposition}{Proposition}
-\newtheorem{conjecture}{Conjecture}
 \newtheorem{claim}{Claim}
-\newtheorem{hypothesis}{Hypothesis}
-\newtheorem{question}{Question}
 \newtheorem{observation}{Observation}
+\newtheorem{conjecture}{Conjecture}
+\AtBeginEnvironment{conjecture}{
+	\setbeamercolor{block title}{bg = beamer@blendedblue!75!black!60!white, fg = white}
+}
+\newtheorem{hypothesis}{Hypothesis}
+\AtBeginEnvironment{hypothesis}{
+	\setbeamercolor{block title}{bg = beamer@blendedblue!75!black!60!white, fg = white}
+}
+\newtheorem{exercise}{Exercise}
+\newtheorem{question}{Question}
+\AtBeginEnvironment{definition}{
+	\setbeamercolor{block title}{bg = black!75!black, fg = white}
+	\setbeamercolor{block body}{bg = black!5}
+}
 \newtheorem{remark}{Remark}
+\AtBeginEnvironment{remark}{
+	\setbeamercolor{block title}{bg = black!75!black, fg = white}
+	\setbeamercolor{block body}{bg = black!5}
+}
+\setbeamercolor{qed symbol}{fg = black}
 
 % Shortcuts
 
