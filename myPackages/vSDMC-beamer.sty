@@ -1,4 +1,4 @@
-\ProvidesPackage{vSDMC-beamer}[2020/04/03]
+\ProvidesPackage{vSDMC-beamer}[2020/04/04]
 
 % Options
 \newif\ifvSDMCdrawing
@@ -12,6 +12,17 @@
 
 % Display
 \usetheme{CambridgeUS}
+\definecolor{sdmc-teal}{RGB}{50, 156, 154}
+\definecolor{mit-cardinal}{RGB}{163, 31, 52}
+\setbeamercolor{alerted text}{fg=red}
+\setbeamercolor*{palette primary}{fg=sdmc-teal!60!black,bg=gray!30!white}
+\setbeamercolor*{palette secondary}{fg=sdmc-teal!70!black,bg=gray!15!white}
+\setbeamercolor*{palette tertiary}{bg=sdmc-teal!80!black,fg=gray!10!white}
+\setbeamercolor*{palette quaternary}{fg=sdmc-teal,bg=gray!5!white}
+\setbeamercolor*{sidebar}{fg=sdmc-teal,bg=gray!15!white}
+\setbeamercolor*{palette sidebar primary}{fg=sdmc-teal!10!black}
+\setbeamercolor*{palette sidebar tertiary}{fg=sdmc-teal!50!black}
+\setbeamercolor{titlelike}{parent=palette primary,fg=sdmc-teal}
 \usecolortheme{orchid}
 \setbeamerfont{block body}{shape = \upshape}
 \institute{\includegraphics[width = 0.2\textwidth]{vSDMC-logo.png}}
