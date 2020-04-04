@@ -1,4 +1,9 @@
-\ProvidesPackage{vSDMC-beamer}[2020/03/27]
+\ProvidesPackage{vSDMC-beamer}[2020/04/03]
+
+% Options
+\newif\ifvSDMCdrawing
+\DeclareOption{drawing}{\vSDMCdrawingtrue}
+\ProcessOptions\relax
 
 % Main packages
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
@@ -15,6 +20,11 @@
 
 % Images and Diagrams
 \usepackage{graphicx}
+\ifvSDMCdrawing
+	\usepackage[inline]{asymptote}
+	\usepackage{tikz-cd}
+	\usepackage{tikzducks}
+\fi
 
 % Referencing
 \newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}

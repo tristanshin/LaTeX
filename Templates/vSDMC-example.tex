@@ -11,7 +11,9 @@
 
 \frame{\titlepage}
 
-\section{Slides}
+\section{Basics}
+
+\subsection{Slides}
 
 \begin{frame}[fragile]\frametitle{Slides}
 	This is a \vocab{frame} (also known as a \vocab{slide}).
@@ -36,6 +38,8 @@
 	
 	This slide does not use any special packages though, so we do not require \texttt{fragile} here.
 \end{frame}
+
+\subsection{Formatting}
 
 \begin{frame}\frametitle{\texttt{itemize} and \texttt{enumerate} environments}
 	The \texttt{itemize} and \texttt{enumerate} environments are still around.
@@ -70,6 +74,23 @@
 		\item \verb|\boldalert| gives you \boldalert{the same but in bold}.
 		\item \verb|\vocab| gives you \vocab{blue, intended for definitions}.
 	\end{itemize}
+\end{frame}
+
+\subsection{Drawing}
+
+\begin{frame}[fragile]\frametitle{Drawing}
+	If you want to draw, you can use the \texttt{drawing} option in \texttt{vSDMC-beamer}. To do this, replace the line
+	
+	\verb|\usepackage{vSDMC-beamer}|
+	
+	with
+	
+	\verb|\usepackage[drawing]{vSDMC-beamer}|
+	
+	This will import \texttt{asymptote} as well as some common \texttt{tikz} packages.
+	\pause
+	
+	Alternatively, feel free to import your own packages separately.
 \end{frame}
 
 \section{Blocks}
