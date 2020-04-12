@@ -1,0 +1,268 @@
+\ProvidesPackage{tssalbeamer}[2020/04/11]
+
+% Options
+\ProcessOptions\relax
+
+% Main packages
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+
+% Main Display
+\useoutertheme[hideothersubsections]{sidebar}
+\useinnertheme[shadow=true]{rounded}
+\setbeamerfont{block title}{size={}}
+\beamertemplatenavigationsymbolsempty
+\usepackage{parskip}
+
+% Colors
+\definecolor{tssal-turquoise}{RGB}{64, 224, 208}
+\definecolor{mit-cardinal}{RGB}{163, 31, 52}
+\definecolor{sdmc-teal}{RGB}{50, 156, 154}
+
+\setbeamercolor*{palette primary}{fg = tssal-turquoise!60!black, bg = tssal-turquoise!80!white}
+\setbeamercolor*{palette secondary}{fg = tssal-turquoise!70!black, bg = tssal-turquoise!50!white}
+\setbeamercolor*{palette tertiary}{bg = tssal-turquoise!80!black, fg = tssal-turquoise!20!white}
+\setbeamercolor*{palette quaternary}{fg = tssal-turquoise, bg = tssal-turquoise!10!white}
+
+\setbeamercolor{titlelike}{parent = palette primary, fg = tssal-turquoise!35!black}
+\setbeamercolor*{frametitle}{parent=palette primary}
+
+\setbeamercolor*{sidebar}{fg = tssal-turquoise, bg = tssal-turquoise!15!white}
+\setbeamercolor*{palette sidebar primary}{fg = tssal-turquoise!10!black}
+\setbeamercolor*{palette sidebar secondary}{fg = purple}
+\setbeamercolor*{palette sidebar tertiary}{fg = tssal-turquoise!50!black}
+\setbeamercolor*{palette sidebar quaternary}{parent = palette primary, fg = tssal-turquoise!35!black}
+\setbeamercolor{section in sidebar}{fg = purple!75!black}
+\setbeamercolor{subsection in sidebar}{fg = purple}
+\setbeamercolor{subsubsection in sidebar}{fg = purple}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=alerted text.fg!75!black}
+\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg!75!black}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+
+% Title Page
+\newcommand{\beamertitle}{
+	\setbeamertemplate{sidebar left}{}
+	\setbeamertemplate{footline}{}
+	\frame{\titlepage}
+	\setbeamertemplate{sidebar left}[sidebar theme]
+	\addtobeamertemplate{footline}{
+		\usebeamercolor[fg]{author in sidebar}
+		\vskip-1cm\hskip12pt
+		\insertframenumber\ of \inserttotalframenumber\kern1em\vskip6pt
+	}
+}
+
+% Sidebar
+\setbeamerfont*{title in sidebar}{size = \tiny, series = \bfseries}
+\def\insertverticalnavigation#1{% careful placement of percent signs for spacing and correct functionality; don't question it
+	\vbox{%
+		\def\sectionentry##1##2##3##4##5{%
+			\ifnum##5=\c@part
+				\def\insertsectionhead{##2}
+				\def\insertsectionheadnumber{##1}
+				\def\insertpartheadnumber{##5}
+				\hbox to #1{{%
+					\usebeamerfont{section in sidebar}\usebeamercolor[fg]{section in sidebar}
+					\hyperlink{Navigation##3}{%
+						\ifnum\c@section=##1{\usebeamertemplate{section in sidebar}}
+						\else{\usebeamertemplate{section in sidebar shaded}}
+						\fi
+					}
+				}}
+				\beamer@currentsubsection=0\relax
+			\fi
+		}
+		\def\slideentry##1##2##3##4##5##6{}
+		\def\beamer@subsectionentry##1##2##3##4##5{%
+			\ifnum##1=\c@part
+				\def\insertpartheadnumber{##1}
+				\def\insertsectionheadnumber{##2}
+				\def\insertsubsectionheadnumber{##3}
+				\def\insertsubsectionhead{##5}
+				\beamer@tocifnothide{%
+					\ifnum\c@section=##2
+						\ifnum\c@subsection=##3\beamer@nav@css
+						\else\beamer@nav@oss
+						\fi
+					\else\beamer@nav@ooss
+					\fi
+				}
+				{%
+					\hbox{{%
+						\usebeamerfont{subsection in sidebar}
+						\usebeamercolor[fg]{subsection in sidebar}
+						\hyperlink{Navigation##4}{%
+							\ifnum\c@section=##2
+								\ifnum\c@subsection=##3\usebeamertemplate{subsection in sidebar}
+								\else\usebeamertemplate{subsection in sidebar shaded}
+								\fi
+							\else\usebeamertemplate{subsection in sidebar shaded}
+							\fi
+						}
+					}}
+				}
+			\fi
+		}
+		\def\beamer@subsubsectionentry##1##2##3##4##5##6{%
+			\ifnum##1=\c@part
+				\def\insertpartheadnumber{##1}
+				\def\insertsectionheadnumber{##2}
+				\def\insertsubsectionheadnumber{##3}
+				\def\insertsubsubsectionheadnumber{##4}
+				\def\insertsubsubsectionhead{##6}
+				\beamer@tocifnothide{%
+					\ifnum\c@section=##2
+						\ifnum\c@subsection=##3
+							\ifnum\c@subsubsection=##4\beamer@nav@css
+							\else\beamer@nav@oss
+							\fi
+						\else\beamer@nav@ooss
+						\fi
+					\else\beamer@nav@ooss
+					\fi
+				}
+				{%
+					\hbox{{%
+						\usebeamerfont{subsubsection in sidebar}
+						\usebeamercolor[fg]{subsubsection in sidebar}
+						\hyperlink{Navigation##5}{%
+							\ifnum\c@section=##2
+								\ifnum\c@subsection=##3
+									\ifnum\c@subsubsection=##4\usebeamertemplate{subsubsection in sidebar}
+									\else\usebeamertemplate{subsubsection in sidebar shaded}
+									\fi
+								\else\usebeamertemplate{subsubsection in sidebar shaded}
+								\fi
+							\else\usebeamertemplate{subsubsection in sidebar shaded}
+							\fi
+						}
+					}}
+				}
+			\fi
+		}
+		\dohead
+	}
+}
+\addtobeamertemplate{footline}{
+	\usebeamercolor[fg]{author in sidebar}
+	\vskip-1cm\hskip12pt
+	\insertframenumber\ of \inserttotalframenumber\kern1em\vskip6pt
+}
+
+% Images and Diagrams
+\usepackage{graphicx}
+\usepackage[inline]{asymptote}
+\usepackage{tikz-cd}
+\usepackage{tikzducks}
+
+% Referencing
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
+
+% Word emphasis
+\newcommand{\boldalert}[1]{\alert{\textbf{#1}}}
+\DeclareTextFontCommand{\vocab}{\color{blue}\bfseries\em}
+
+% Problem Database
+\newcommand{\pdb}[1]{\begin{problem}\input{"/Users/tristanshin/Dropbox/ProblemDatabase/P/#1".tex}\unskip\end{problem}}
+\newcommand{\pdbl}[1]{\begin{problem}[\input{"/Users/tristanshin/Dropbox/ProblemDatabase/L/#1".tex}\unskip]\input{"/Users/tristanshin/Dropbox/ProblemDatabase/P/#1".tex}\unskip\end{problem}}
+
+% Boxes
+\setbeamerfont{block body}{shape = \upshape}
+\newtheorem{proposition}{Proposition}
+\newtheorem{claim}{Claim}
+\newtheorem{observation}{Observation}
+\newtheorem{conjecture}{Conjecture}
+\AtBeginEnvironment{conjecture}{
+	\setbeamercolor{block title}{bg = beamer@blendedblue!75!black!60!white, fg = white}
+}
+\newtheorem{hypothesis}{Hypothesis}
+\AtBeginEnvironment{hypothesis}{
+	\setbeamercolor{block title}{bg = beamer@blendedblue!75!black!60!white, fg = white}
+}
+\newtheorem{exercise}{Exercise}
+\newtheorem{question}{Question}
+\AtBeginEnvironment{definition}{
+	\setbeamercolor{block title}{bg = black!75!black, fg = white}
+	\setbeamercolor{block body}{bg = black!5}
+}
+\newtheorem{remark}{Remark}
+\AtBeginEnvironment{remark}{
+	\setbeamercolor{block title}{bg = black!75!black, fg = white}
+	\setbeamercolor{block body}{bg = black!5}
+}
+\setbeamercolor{qed symbol}{fg = black}
+
+\usepackage[most]{tcolorbox}
+\newcommand{\quotebox}[2]{
+	\begin{tcolorbox}[colback=tssal-turquoise!5!white,colframe=black!75!black,sharp corners=downhill]
+		\vskip 0.2em {\fontsize{42}{48}\selectfont \color{tssal-turquoise!75!black} \hskip -0.3em \textbf{``} \vskip -.5em} \vskip -.5em
+		\parindent 1.9em
+		#1 \vskip 0.3em \begin{flushright}\textsc{#2}\end{flushright}
+	\end{tcolorbox}
+}
+
+% Shortcuts
+
+% Sets
+\DeclareMathOperator{\NN}{\mathbb{N}} % natural numbers
+\DeclareMathOperator{\ZZ}{\mathbb{Z}} % integers
+\DeclareMathOperator{\QQ}{\mathbb{Q}} % rationals
+\DeclareMathOperator{\RR}{\mathbb{R}} % reals
+\DeclareMathOperator{\CC}{\mathbb{C}} % complex numbers
+\DeclareMathOperator{\FF}{\mathbb{F}} % finite field
+\newcommand{\Zmod}[1]{\mathbb{Z}/#1\mathbb{Z}} % Z mod nZ
+\DeclareMathOperator{\GL}{GL} % general linear group
+\DeclareMathOperator{\SL}{SL} % special linear group
+
+% Numbers
+\DeclareMathOperator{\lcm}{lcm} % lcm
+\DeclareMathOperator{\sgn}{sgn} % sign
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} % magnitude/cardinality
+\newcommand{\cbrt}[1]{\sqrt[3]{#1}} % cube root
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor} % floor
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil} % ceiling
+\newcommand{\eps}{\epsilon} % epsilon
+\let\Re\relax\DeclareMathOperator{\Re}{Re} % real part
+\let\Im\relax\DeclareMathOperator{\Im}{Im} % imaginary part
+\newcommand{\conj}[1]{\overline{#1}} % conjugate
+\let\d\relax\newcommand{\d}{\mathop{}\!\mathrm{d}} % differential operator
+\newcommand{\legendre}[2]{\jacobi{#1}{#2}} % Legendre symbol
+
+% Geometry
+\DeclareMathOperator{\diam}{diam} % diameter
+\DeclareMathOperator{\area}{area} % area
+\DeclareMathOperator{\vol}{vol} % volume
+\newcommand{\arc}[1]{\wideparen{#1}} % arc
+
+% Statistics
+\DeclareMathOperator{\PP}{\mathbb{P}} % probability
+\DeclareMathOperator{\EE}{\mathbb{E}} % expectation
+\DeclareMathOperator{\Var}{Var} % variance
+
+% Abstract Algebra
+\DeclareMathOperator{\id}{id} % group identity
+\DeclareMathOperator{\ord}{ord} % order
+
+% Sets and Functions
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\st}{\,\middle\vert\,}
+\let\complement\relax\newcommand{\comp}{\mathsf{c}} % set complement
+\DeclareMathOperator{\img}{img} % image
+\newcommand{\injto}{\hookrightarrow} % injective to
+\newcommand{\surjto}{\twoheadrightarrow} % surjective to
+
+% Linear Algebra
+\newcommand{\vecb}[1]{\mathbf{#1}} % vector
+\newcommand{\vecabs}[1]{\left\lVert#1\right\rVert} % vector magnitude
+\DeclareMathOperator{\rank}{rank} % rank
+\DeclareMathOperator{\tr}{tr} % trace
+\newcommand{\tpose}{\intercal} % transpose
+\newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle} % inner product
