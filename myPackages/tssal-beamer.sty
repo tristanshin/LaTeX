@@ -55,8 +55,11 @@
 	\setbeamertemplate{sidebar left}[sidebar theme]
 	\addtobeamertemplate{footline}{
 		\usebeamercolor[fg]{author in sidebar}
-		\vskip-1cm\hskip12pt
-		\insertframenumber\ of \inserttotalframenumber\kern1em\vskip6pt
+		\vskip-1cm
+		\makebox[\beamer@sidebarwidth][c]{
+			\insertframenumber\ of \inserttotalframenumber
+		}
+		\vskip6pt
 	}
 }
 
@@ -150,11 +153,6 @@
 		}
 		\dohead
 	}
-}
-\addtobeamertemplate{footline}{
-	\usebeamercolor[fg]{author in sidebar}
-	\vskip-1cm\hskip12pt
-	\insertframenumber\ of \inserttotalframenumber\kern1em\vskip6pt
 }
 
 % Images and Diagrams
