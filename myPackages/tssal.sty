@@ -1,4 +1,4 @@
-\ProvidesPackage{tssal}[2020/03/27]
+\ProvidesPackage{tssal}[2020/04/18]
 % NEEDS HEAVY REWRITE
 % TODO: write options
 
@@ -48,6 +48,9 @@
 % Document Formatting
 \usepackage[margin=1in]{geometry}
 \usepackage[dvipsnames]{xcolor}
+\definecolor{tssal-turquoise}{RGB}{64, 224, 208}
+\definecolor{mit-cardinal}{RGB}{163, 31, 52}
+\definecolor{sdmc-teal}{RGB}{50, 156, 154}
 \newlength\tindent
 \setlength{\tindent}{\parindent}
 \setlength{\parindent}{0pt}
@@ -59,6 +62,7 @@
 	\setlength{\parskip}{1em}
 }
 \usepackage{enumitem}
+\usepackage{booktabs}
 \usepackage[labelfont=it,font=footnotesize]{caption}
 \iftssallessspace
 	\newcommand\sectionprelude{\vspace{-1.3\baselineskip}}
@@ -78,6 +82,10 @@
 	\setlist{topsep=0pt}
 \fi
 \newcommand{\ds}{\displaystyle}
+\usepackage{array}
+\newcolumntype{L}{>{$}l<{$}}
+\newcolumntype{C}{>{$}c<{$}}
+\newcolumntype{R}{>{$}r<{$}}
 
 % Header/Footer
 \usepackage{fancyhdr}
@@ -97,6 +105,7 @@
     urlcolor=cyan,
 }
 \usepackage{nameref}
+\newcommand{\link}[1]{\href{https://#1}{#1}}
 \newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
 
 % Theorems, Proofs, Problems, Solutions
@@ -105,108 +114,128 @@
 \theoremstyle{definition}
 
 \newtcolorbox{redboxtitle}[1]{
+	parbox = false,
 	colback = red!5,
 	colframe = red!75!black,
 	fonttitle = \bfseries,
 	title = {#1}
 }
 \newtcolorbox{greenboxtitle}[1]{
+	parbox = false,
 	colback = green!5,
 	colframe = green!75!black,
 	fonttitle = \bfseries,
 	title = {#1}
 }
 \newtcolorbox{blueboxtitle}[1]{
+	parbox = false,
 	colback = blue!5,
 	colframe = blue!75!black,
 	fonttitle = \bfseries,
 	title = {#1}
 }
 \newtcolorbox{blackboxtitle}[1]{
+	parbox = false,
 	colback = black!5,
 	colframe = black!75!black,
 	fonttitle = \bfseries,
 	title = {#1}
 }
 \newtcolorbox{redbox}{
+	parbox = false,
 	colback = red!5,
 	colframe = red!75!black
 }
 \newtcolorbox{greenbox}{
+	parbox = false,
 	colback = green!5,
 	colframe = green!75!black
 }
 \newtcolorbox{bluebox}{
+	parbox = false,
 	colback = blue!5,
 	colframe = blue!75!black
 }
 \newtcolorbox{blackbox}{
+	parbox = false,
 	colback = black!5,
 	colframe = black!75!black
 }
 
 \newtcbtheorem[number within = section]{theorem}{Theorem}{
+	parbox = false,
 	colback = green!5,
 	colframe = green!35!black,
 	fonttitle = \bfseries,
 }{thm}
 \newtcbtheorem[use counter from = theorem]{corollary}{Corollary}{
+	parbox = false,
 	colback = green!5,
 	colframe = green!35!black,
 	fonttitle = \bfseries
 }{cor}
 \newtcbtheorem[use counter from = theorem]{lemma}{Lemma}{
+	parbox = false,
 	colback = green!5,
 	colframe = green!35!black,
 	fonttitle = \bfseries
 }{lem}
 \newtcbtheorem[use counter from = theorem]{proposition}{Proposition}{
+	parbox = false,
 	colback = green!5,
 	colframe = green!35!black,
 	fonttitle = \bfseries
 }{prop}
 \newtcbtheorem[use counter from = theorem]{fact}{Fact}{
+	parbox = false,
 	colback = green!5,
 	colframe = green!35!black,
 	fonttitle = \bfseries
 }{fact}
 \newtcbtheorem[use counter from = theorem]{conjecture}{Conjecture}{
+	parbox = false,
 	colback = green!5,
 	colframe = green!75!black,
 	fonttitle = \bfseries
 }{conj}
 \newtcbtheorem[use counter from = theorem]{hypothesis}{Hypothesis}{
+	parbox = false,
 	colback = green!5,
 	colframe = green!75!black,
 	fonttitle = \bfseries
 }{hyp}
 \newtcbtheorem[use counter from = theorem]{problem}{Problem}{
+	parbox = false,
 	colback = blue!5,
 	colframe = blue!75!black,
 	fonttitle = \bfseries
 }{prob}
 \newtcbtheorem[use counter from = theorem]{question}{Question}{
+	parbox = false,
 	colback = blue!5,
 	colframe = blue!75!black,
 	fonttitle = \bfseries
 }{ques}
 \newtcbtheorem[use counter from = theorem]{exampleproblem}{Example Problem}{
+	parbox = false,
 	colback = blue!5,
 	colframe = blue!75!black,
 	fonttitle = \bfseries
 }{exprob}
 \newtcbtheorem[use counter from = theorem]{example}{Example}{
+	parbox = false,
 	colback=Turquoise!5,
 	colframe=Turquoise!70,
 	fonttitle=\bfseries,
 	sharp corners
 }{ex}
 \newtcbtheorem[use counter from = theorem]{definition}{Definition}{
+	parbox = false,
 	colback = black!5,
 	colframe = black!75!black,
 	fonttitle = \bfseries
 }{def}
-\newenvironment{remark}{\tcolorbox[colback = black!5, colframe = black!75!black]\textbf{Remark.}}{\endtcolorbox}
+\newenvironment{remark}{\tcolorbox[parbox = false, colback = black!5, colframe = black!75!black]\textbf{Remark.}}{\endtcolorbox}
 
 \newenvironment{intheorem}{\par\noindent\ignorespaces\textbf{Theorem.}}{\par\ignorespacesafterend}
 \newenvironment{incorollary}{\par\noindent\ignorespaces\textbf{Corollary.}}{\par\ignorespacesafterend}
@@ -242,14 +271,12 @@
 \renewenvironment{proof}{\pushQED{\qed}\par\noindent\ignorespaces\emph{Proof.}}{\popQED\par\ignorespacesafterend}
 \newenvironment{lemmaproof}{\pushQED{\hfill$\square$}\par\noindent\ignorespaces\emph{Proof.}}{\popQED\par\ignorespacesafterend}
 
-% quote box still under construction
+% parts taken from https://tex.stackexchange.com/questions/6985/place-quotation-dictum-in-a-box
 \newcommand{\quotebox}[2]{
-	\begin{tcolorbox}[colback=black!5!white,colframe=black!75!black,sharp corners=downhill]
-		``\textit{#1}''
-		
-		\medskip
-		
-		\textit{\textbf{\footnotesize #2}}
+	\begin{tcolorbox}[colback=tssal-turquoise!5!white,colframe=black!75!black,sharp corners=downhill]
+		\vskip 1em {\fontsize{42}{48}\selectfont \color{tssal-turquoise!75!black} \textbf{``} \vskip -.5em} \vskip -.5em
+		\parindent 2.2em
+		#1\begin{flushright}\textsc{#2}\end{flushright}
 	\end{tcolorbox}
 }
 
@@ -266,6 +293,7 @@
 \usepackage{systeme}
 \usepackage{mathdots}
 \usepackage{mathtools}
+\usepackage{booktabs}
 \usepackage[normalem]{ulem}
 \DeclareTextFontCommand{\vocab}{\color{blue}\bfseries\em}
 
@@ -323,7 +351,7 @@
 \DeclareMathOperator{\re}{re}
 \let\Re\relax\DeclareMathOperator{\Re}{Re}
 % Calculus
-\let\d\relax\newcommand{\d}{\,\mathrm{d}}
+\let\d\relax\newcommand{\d}{\mathop{}\!\mathrm{d}}
 \newcommand{\dt}{\d t}
 \newcommand{\dw}{\d w}
 \newcommand{\dx}{\d x}
