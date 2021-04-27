@@ -1,4 +1,4 @@
-\ProvidesPackage{vSDMC-beamer}[2020/04/04]
+\ProvidesPackage{vSDMC-beamer}[2020/09/08]
 
 % Options
 \newif\ifvSDMCdrawing
@@ -52,6 +52,8 @@
 \usepackage{graphicx}
 \ifvSDMCdrawing
 	\usepackage[inline]{asymptote}
+	\usepackage{tikz}
+	\usetikzlibrary{calc}
 	\usepackage{tikz-cd}
 	\usepackage{tikzducks}
 \fi

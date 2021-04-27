@@ -1,10 +1,12 @@
-\ProvidesPackage{tssal}[2020/04/18]
+\ProvidesPackage{tssal}[2021/04/09]
 % NEEDS HEAVY REWRITE
 % TODO: write options
 
 % Options
 \newif\iftssaldraft
 \DeclareOption{draft}{\tssaldrafttrue}
+\newif\iftssalinternal
+\DeclareOption{internal}{\tssalinternaltrue}
 \newif\iftssallessspace
 \DeclareOption{lessspace}{\tssallessspacetrue}
 \ProcessOptions\relax
@@ -16,6 +18,14 @@
 	\SetWatermarkFontSize{32pt}
 	\SetWatermarkScale{5}
 	\SetWatermarkText{DRAFT}
+\fi
+\iftssalinternal
+	\usepackage{draftwatermark}
+	\SetWatermarkAngle{50}
+	\SetWatermarkLightness{0.75}
+	\SetWatermarkFontSize{32pt}
+	\SetWatermarkScale{5}
+	\SetWatermarkText{INTERNAL}
 \fi
 
 % Required Packages
@@ -48,9 +58,9 @@
 % Document Formatting
 \usepackage[margin=1in]{geometry}
 \usepackage[dvipsnames]{xcolor}
-\definecolor{tssal-turquoise}{RGB}{64, 224, 208}
-\definecolor{mit-cardinal}{RGB}{163, 31, 52}
-\definecolor{sdmc-teal}{RGB}{50, 156, 154}
+\definecolor{tssal-turquoise}{RGB}{64, 224, 208} % hex #00CCCC
+\definecolor{mit-cardinal}{RGB}{163, 31, 52} % hex #a31f34
+\definecolor{sdmc-teal}{RGB}{50, 156, 154} % hex #329c9a
 \newlength\tindent
 \setlength{\tindent}{\parindent}
 \setlength{\parindent}{0pt}
@@ -105,7 +115,9 @@
     urlcolor=cyan,
 }
 \usepackage{nameref}
-\newcommand{\link}[1]{\href{https://#1}{#1}}
+\newcommand{\link}[1]{\href{https://#1}{\texttt{#1}}}
+\newcommand{\yt}[1]{\link{youtube.com/watch?v=#1}}
+\newcommand{\ytts}[3]{\href{https://youtu.be/#1?t=#2m#3s}{{#2}:{#3}}}
 \newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
 
 % Theorems, Proofs, Problems, Solutions
@@ -295,7 +307,7 @@
 \usepackage{mathtools}
 \usepackage{booktabs}
 \usepackage[normalem]{ulem}
-\DeclareTextFontCommand{\vocab}{\color{blue}\bfseries\em}
+\DeclareTextFontCommand{\vocab}{\color{blue}\bfseries}
 
 % Problem Database
 \newcommand{\pdb}[1]{\input{"/Users/tristanshin/Dropbox/ProblemDatabase/P/#1".tex}\unskip}
@@ -308,7 +320,9 @@
 % Algebra
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Bohr}{Bohr}
+\DeclareMathOperator{\chr}{char}
 \DeclareMathOperator{\Cl}{Cl}
 \DeclareMathOperator{\codim}{codim}
 \DeclareMathOperator{\fix}{fix}
@@ -324,6 +338,7 @@
 \DeclareMathOperator{\nul}{nul}
 \DeclareMathOperator{\Nul}{Nul}
 \DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\rad}{rad}
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\SL}{SL}
 \DeclareMathOperator{\Span}{Span}
@@ -383,9 +398,11 @@
 \newcommand{\ddz}{\frac{\d}{\dz}}
 % Discrete
 \DeclareMathOperator{\sgn}{sgn}
+\newcommand{\qbinom}[2]{\begin{bmatrix}{#1}\\ {#2}\end{bmatrix}_q}
 % Geometry
 \newcommand{\arc}[1]{\wideparen{#1}}
 \DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Vol}{Vol}
 \DeclareMathOperator{\vol}{vol}
 % Graph Theory
 \DeclareMathOperator{\Cay}{Cay}
