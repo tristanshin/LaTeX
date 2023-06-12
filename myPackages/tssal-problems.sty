@@ -1,0 +1,33 @@
+\ProvidesPackage{tssal-problems}[2022/10/12]
+
+% Options
+\newif\ifsol
+\DeclareOption{sol}{\soltrue}
+\DeclareOption{nosol}{\solfalse}
+\newcommand{\togglesol}{\ifsol\solfalse\else\soltrue\fi}
+
+\newif\ifnames
+\DeclareOption{names}{\namestrue}
+\DeclareOption{nonames}{\namesfalse}
+\newcommand{\togglenames}{\ifnames\namesfalse\else\namestrue\fi}
+
+\newif\ifnotes
+\DeclareOption{notes}{\notestrue}
+\DeclareOption{nonotes}{\notesfalse}
+\newcommand{\togglenotes}{\ifnotes\notesfalse\else\notestrue\fi}
+
+\newif\ifarml
+\DeclareOption{arml}{\armltrue}
+
+\ProcessOptions\relax
+
+% Commands
+
+% Macros
+\makeatletter\newenvironment{gobble}{\setbox\z@\vbox\bgroup}{\egroup}\makeatother % Gobbles everything inside it, rendering it invisible.
+\newcommand{\pname}[1]{\ifnames(#1)\else\fi}
+\newcommand{\parmldifficulty}[1]{\ifarml\ifsol\textbf{Difficulty:} #1\else\fi\else\fi}
+\newcommand{\parmltest}[1]{\ifarml\ifsol\textbf{Test:} #1\else\fi\else\fi}
+\newcommand{\pnotes}[1]{\ifnotes\textbf{Notes:} #1\else\fi}
+\newcommand{\panswer}[1]{\ifsol\textbf{Answer:} #1\else\fi}
+\newenvironment{psol}{\ifsol\textbf{Solution:}\else\begin{gobble}\fi}{\ifsol\else\end{gobble}\fi}

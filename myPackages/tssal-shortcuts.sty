@@ -1,0 +1,186 @@
+\ProvidesPackage{tssal-shortcuts}[2022/12/09]
+
+% Standard Sets
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\ZZ}{\mathbb{Z}}
+\DeclareMathOperator{\QQ}{\mathbb{Q}}
+\DeclareMathOperator{\RR}{\mathbb{R}}
+\DeclareMathOperator{\CC}{\mathbb{C}}
+\DeclareMathOperator{\FF}{\mathbb{F}}
+\newcommand{\Zmod}[1]{\mathbb{Z}/#1\mathbb{Z}}
+
+% Parentheses/Brackets
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\brac}[1]{\left[ #1 \right]}
+\newcommand{\parenbrac}[1]{\left( #1 \right]}
+\newcommand{\bracparen}[1]{\left[ #1 \right)}
+\newcommand{\curlybrace}[1]{\left\{ #1 \right\}}
+
+% Set Notation
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\st}{\,\middle\vert\,}
+\newcommand{\cst}{\,:\,}
+\newcommand{\stc}{\,:\,}
+\newcommand{\card}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\comp}{\mathsf{c}}
+\let\complement\relax\newcommand{\complement}{\mathsf{c}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% Special Functions
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\fracpart}[1]{\left\{#1\right\}}
+
+\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
+
+\newcommand{\cycsum}{\displaystyle\sum_{\mathrm{cyc}}}
+\newcommand{\cycprod}{\displaystyle\prod_{\mathrm{cyc}}}
+\newcommand{\symsum}{\displaystyle\sum_{\mathrm{sym}}}
+\newcommand{\symprod}{\displaystyle\prod_{\mathrm{sym}}}
+
+% General Terms
+\DeclareMathOperator{\ord}{ord}
+
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\vol}{vol}
+
+% Functions
+\DeclareMathOperator{\img}{img}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\injto}{\hookrightarrow}
+\newcommand{\surjto}{\twoheadrightarrow}
+\newcommand{\inclto}{\hookrightarrow}
+\newcommand{\embedto}{\hookrightarrow}
+
+% Linear Algebra
+\DeclareMathOperator{\codim}{codim}
+
+\newcommand{\vecb}[1]{\mathbf{#1}}
+\newcommand{\innerproduct}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\ip}[2]{\innerproduct{#1}{#2}}
+\newcommand{\vecabs}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\tpose}{\intercal}
+\newcommand{\transpose}{\intercal}
+
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nul}{nul}
+\DeclareMathOperator{\Nul}{Nul}
+
+% Algebra
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\chr}{char}
+
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
+
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fix}{fix}
+\DeclareMathOperator{\Aut}{Aut}
+
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\Frac}{Frac}
+
+% Number Theory
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+\DeclareMathOperator{\disc}{disc}
+\DeclareMathOperator{\Disc}{Disc}
+
+\newcommand{\frakp}{\mathfrak{p}}
+\newcommand{\frakq}{\mathfrak{q}}
+\newcommand{\frakm}{\mathfrak{m}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calD}{\mathcal{D}}
+\let\AA\relax\DeclareMathOperator{\AA}{\mathbb{A}}
+
+% Combinatorics
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\qbinom}[2]{\begin{bmatrix}{#1}\\ {#2}\end{bmatrix}_q}
+
+\DeclareMathOperator{\codeg}{codeg}
+\DeclareMathOperator{\ex}{ex}
+\DeclareMathOperator{\crossing}{cr}
+\DeclareMathOperator{\Cay}{Cay}
+
+\DeclareMathOperator{\tow}{tow}
+\DeclareMathOperator{\srank}{slice-rank}
+\DeclareMathOperator{\Bohr}{Bohr}
+
+% Analysis
+\newcommand{\eps}{\epsilon}
+
+\DeclareMathOperator{\Log}{Log}
+\newcommand{\LT}{\mathcal{L}}
+
+\DeclareMathOperator{\TT}{\mathbb{T}}
+
+% Complex Numbers
+\DeclareMathOperator{\re}{re}
+\let\Re\relax\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\im}{im}
+\let\Im\relax\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Arg}{Arg}
+\newcommand{\conj}[1]{\overline{#1}}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\Res}{Res}
+
+% Calculus
+\let\d\relax\newcommand{\d}{\mathop{}\!\mathrm{d}}
+\newcommand{\dt}{\d t}
+\newcommand{\dw}{\d w}
+\newcommand{\dx}{\d x}
+\newcommand{\dy}{\d y}
+\newcommand{\dz}{\d z}
+\newcommand{\dtheta}{\d\theta}
+\newcommand{\dphi}{\d\phi}
+\newcommand{\dvarphi}{\d\varphi}
+\newcommand{\dr}{\d r}
+\newcommand{\du}{\d u}
+\newcommand{\dv}{\d v}
+\newcommand{\dxy}{\dx\dy}
+\newcommand{\dyx}{\dy\dx}
+\newcommand{\dxz}{\dx\dz}
+\newcommand{\dzx}{\dz\dx}
+\newcommand{\dyz}{\dy\dz}
+\newcommand{\dzy}{\dz\dy}
+\newcommand{\dxyz}{\dx\dy\dz}
+\newcommand{\dxzy}{\dx\dz\dy}
+\newcommand{\dyxz}{\dy\dx\dz}
+\newcommand{\dyzx}{\dy\dz\dx}
+\newcommand{\dzxy}{\dz\dx\dy}
+\newcommand{\dzyx}{\dz\dy\dx}
+\newcommand{\dds}{\frac{\d}{\d s}}
+\newcommand{\ddt}{\frac{\d}{\dt}}
+\newcommand{\ddw}{\frac{\d}{\dw}}
+\newcommand{\ddx}{\frac{\d}{\dx}}
+\newcommand{\ddy}{\frac{\d}{\dy}}
+\newcommand{\ddz}{\frac{\d}{\dz}}
+
+% Geometry
+\newcommand{\arc}[1]{\wideparen{#1}}
+\DeclareMathOperator{\covol}{covol}
+
+% Probability Theory/Statistics
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\DeclareMathOperator{\EE}{\mathbb{E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\renewcommand{\P}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\EV}[1]{\mathbb{E}\left[#1\right]}
