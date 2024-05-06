@@ -1,4 +1,6 @@
-\ProvidesPackage{tssal-shortcuts}[2022/12/09]
+\ProvidesPackage{tssal-shortcuts}[2024/01/28]
+
+\newcommand*{\reldesc}[3][comment-orange]{\stackrel{{\color{#1} #3}}{#2}}
 
 % Standard Sets
 \DeclareMathOperator{\NN}{\mathbb{N}}
@@ -20,7 +22,7 @@
 \newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\st}{\,\middle\vert\,}
 \newcommand{\cst}{\,:\,}
-\newcommand{\stc}{\,:\,}
+\newcommand{\stc}{\cst}
 \newcommand{\card}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\comp}{\mathsf{c}}
 \let\complement\relax\newcommand{\complement}{\mathsf{c}}
@@ -31,6 +33,10 @@
 % Special Functions
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\DeclareMathOperator{\dist}{dist}
+\newcommand{\indicator}{\mathbf{1}}
+\DeclareMathOperator{\bbone}{\text{\usefont{U}{bbm}{m}{n}1}}
+\newcommand{\ind}{\bbone}
 
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
@@ -58,6 +64,7 @@
 \newcommand{\surjto}{\twoheadrightarrow}
 \newcommand{\inclto}{\hookrightarrow}
 \newcommand{\embedto}{\hookrightarrow}
+\newcommand{\argdot}{\,\cdot\,}
 
 % Linear Algebra
 \DeclareMathOperator{\codim}{codim}
@@ -78,6 +85,15 @@
 \DeclareMathOperator{\nul}{nul}
 \DeclareMathOperator{\Nul}{Nul}
 
+\newcommand{\mattwo}[4]{\begin{matrix} #1 & #2 \\ #3 & #4 \end{matrix}}
+\newcommand{\pmattwo}[4]{\begin{pmatrix} #1 & #2 \\ #3 & #4 \end{pmatrix}}
+\newcommand{\bmattwo}[4]{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}
+\newcommand{\vmattwo}[4]{\begin{vmatrix} #1 & #2 \\ #3 & #4 \end{vmatrix}}
+\newcommand{\smattwo}[4]{\begin{smallmatrix} #1 & #2 \\ #3 & #4 \end{smallmatrix}}
+\newcommand{\psmattwo}[4]{\begin{psmallmatrix} #1 & #2 \\ #3 & #4 \end{psmallmatrix}}
+\newcommand{\bsmattwo}[4]{\begin{bsmallmatrix} #1 & #2 \\ #3 & #4 \end{bsmallmatrix}}
+\newcommand{\vsmattwo}[4]{\begin{vsmallmatrix} #1 & #2 \\ #3 & #4 \end{vsmallmatrix}}
+
 % Algebra
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Hom}{Hom}
@@ -96,6 +112,11 @@
 \DeclareMathOperator{\Cl}{Cl}
 \DeclareMathOperator{\Frac}{Frac}
 
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+
+\DeclareMathOperator{\Spec}{Spec}
+
 % Number Theory
 \DeclareMathOperator{\lcm}{lcm}
 \newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
@@ -108,6 +129,9 @@
 \newcommand{\calO}{\mathcal{O}}
 \newcommand{\calD}{\mathcal{D}}
 \let\AA\relax\DeclareMathOperator{\AA}{\mathbb{A}}
+
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\upperhp}{\mathcal{H}}
 
 % Combinatorics
 \DeclareMathOperator{\sgn}{sgn}
@@ -130,6 +154,8 @@
 \newcommand{\LT}{\mathcal{L}}
 
 \DeclareMathOperator{\TT}{\mathbb{T}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calL}{\mathcal{L}}
 
 % Complex Numbers
 \DeclareMathOperator{\re}{re}
@@ -177,10 +203,28 @@
 \newcommand{\arc}[1]{\wideparen{#1}}
 \DeclareMathOperator{\covol}{covol}
 
-% Probability Theory/Statistics
+% Probability/Statistics
 \DeclareMathOperator{\PP}{\mathbb{P}}
 \DeclareMathOperator{\EE}{\mathbb{E}}
+\DeclareMathOperator*{\EV}{\mathop{{}\mathbb{E}}}
+\newcommand*{\dsev}{
+	\mathop{
+		\mathchoice{\vcenter{\hbox{\larger[4]$\mathbb{E}$}}}
+		{\kern0pt\mathbb{E}}
+		{\kern0pt\mathbb{E}}
+		{\kern0pt\mathbb{E}}
+	}\displaylimits
+}
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Cov}{Cov}
 \renewcommand{\P}[1]{\mathbb{P}\left(#1\right)}
-\newcommand{\EV}[1]{\mathbb{E}\left[#1\right]}
+% \newcommand{\EV}[1]{\mathbb{E}\left[#1\right]} % old version
+
+\newcommand{\iid}{\stackrel{\mathrm{i.i.d.}}{\sim}}
+\DeclareMathOperator{\Unif}{Unif}
+\DeclareMathOperator{\Ber}{Ber}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Geom}{Geom}
+\DeclareMathOperator{\Pois}{Pois}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\Lognormal}{Lognormal}

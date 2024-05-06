@@ -1,4 +1,4 @@
-\ProvidesPackage{tssal}[2023/06/11]
+\ProvidesPackage{tssal}[2023/11/15]
 % NEEDS HEAVY REWRITE
 % TODO: write options
 
@@ -24,7 +24,7 @@
 \iftssalinternal
 	\usepackage{draftwatermark}
 	\SetWatermarkAngle{50}
-	\SetWatermarkLightness{0.75}
+	\SetWatermarkLightness{0.9}
 	\SetWatermarkFontSize{32pt}
 	\SetWatermarkScale{5}
 	\SetWatermarkText{INTERNAL}
@@ -63,6 +63,7 @@
 \definecolor{tssal-turquoise}{RGB}{64, 224, 208} % hex #00CCCC
 \definecolor{mit-cardinal}{RGB}{163, 31, 52} % hex #a31f34
 \definecolor{sdmc-teal}{RGB}{50, 156, 154} % hex #329c9a
+\definecolor{comment-orange}{RGB}{255, 140, 0} % hex #ff8c00
 \newlength\tindent
 \setlength{\tindent}{\parindent}
 \setlength{\parindent}{0pt}
@@ -107,6 +108,8 @@
 \lhead{\thetitle}
 \rhead{\theauthor}
 \cfoot{\thepage}
+
+\usepackage[bottom]{footmisc}
 
 % Referencing
 \usepackage{hyperref}
@@ -365,6 +368,13 @@
 		fonttitle=\bfseries,
 		sharp corners,
 	}{ex}
+	\newtcbtheorem[use counter from = theorem]{exercise}{Exercise}{
+		parbox = false,
+		colback=exback,
+		colframe=exframe,
+		fonttitle=\bfseries,
+		sharp corners,
+	}{exer}
 	\newtcbtheorem[use counter from = theorem]{definition}{Definition}{
 		parbox = false,
 		colback = defback,
@@ -385,6 +395,7 @@
 \newenvironment{inquestion}{\par\noindent\ignorespaces\textbf{Question.}}{\par\ignorespacesafterend}
 \newenvironment{inexampleproblem}{\par\noindent\ignorespaces\textbf{Example Problem.}}{\par\ignorespacesafterend}
 \newenvironment{inexample}{\par\noindent\ignorespaces\textbf{Example.}}{\par\ignorespacesafterend}
+\newenvironment{inexercise}{\par\noindent\ignorespaces\textbf{Exercise.}}{\par\ignorespacesafterend}
 \newenvironment{inremark}{\par\noindent\ignorespaces\textbf{Remark.}}{\par\ignorespacesafterend}
 \newtheorem{numberedintheorem}{Theorem}
 \newtheorem{numberedincorollary}{Corollary}
@@ -400,7 +411,7 @@
 \newtheorem{numberedinremark}{Remark}
 
 \newenvironment{indefinition}{\par\noindent\ignorespaces\textbf{Definition.}}{\par\ignorespacesafterend}
-\newenvironment{claim}{\par\noindent\ignorespaces\textbf{Claim.}}{\par\ignorespacesafterend}
+\newenvironment{claim}{\par\noindent\ignorespaces\textbf{Claim:}}{\par\ignorespacesafterend}
 \newenvironment{observation}{\par\noindent\ignorespaces\textbf{Observation.}}{\par\ignorespacesafterend}
 \newenvironment{solutionlemma}{\par\noindent\ignorespaces\textbf{Lemma:}}{\par\ignorespacesafterend}
 \renewcommand\qedsymbol{$\blacksquare$}
@@ -433,12 +444,14 @@
 \usepackage{booktabs}
 \usepackage[normalem]{ulem}
 \DeclareTextFontCommand{\vocab}{\color{blue}\bfseries}
+\DeclareTextFontCommand{\boldalert}{\color{red}\bfseries}
+\newcommand{\TODO}[1]{{\color{red}\textbf{TODO}: #1}}
 
 % Problem Database
-\newcommand{\pdb}[1]{\input{"C:/Users/tshin/Dropbox/ProblemDatabase/P/#1".tex}\unskip}
-\newcommand{\sdb}[1]{\input{"C:/Users/tshin/Dropbox/ProblemDatabase/S/#1".tex}\unskip}
-\newcommand{\ldb}[1]{\input{"C:/Users/tshin/Dropbox/ProblemDatabase/L/#1".tex}\unskip}
-\newcommand{\pdbl}[1]{(\input{"C:/Users/tshin/Dropbox/ProblemDatabase/L/#1".tex}\unskip) \pdb{#1}}
+\newcommand{\pdb}[1]{\IfFileExists{"C:/Users/tshin/Dropbox/ProblemDatabase/P/#1".tex}{\input{"C:/Users/tshin/Dropbox/ProblemDatabase/P/#1".tex}}{#1}\unskip}
+\newcommand{\sdb}[1]{\IfFileExists{"C:/Users/tshin/Dropbox/ProblemDatabase/S/#1".tex}{\input{"C:/Users/tshin/Dropbox/ProblemDatabase/S/#1".tex}}{TODO}\unskip}
+\newcommand{\ldb}[1]{\IfFileExists{"C:/Users/tshin/Dropbox/ProblemDatabase/L/#1".tex}{\input{"C:/Users/tshin/Dropbox/ProblemDatabase/L/#1".tex}}{#1}\unskip}
+\newcommand{\pdbl}[1]{\IfFileExists{"C:/Users/tshin/Dropbox/ProblemDatabase/P/#1".tex}{\IfFileExists{"C:/Users/tshin/Dropbox/ProblemDatabase/L/#1".tex}{(\input{"C:/Users/tshin/Dropbox/ProblemDatabase/L/#1".tex}\unskip) \input{"C:/Users/tshin/Dropbox/ProblemDatabase/P/#1".tex}}{\input{"C:/Users/tshin/Dropbox/ProblemDatabase/P/#1".tex}}}{#1}\unskip}
 
 % Personal Definitions
 \usepackage{tssal-shortcuts}

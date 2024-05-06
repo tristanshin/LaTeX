@@ -1,21 +1,50 @@
-\ProvidesPackage{tssal-paper}[2020/08/23]
+\ProvidesPackage{tssal-paper}[2024/05/02]
 
-\usepackage[foot]{amsaddr}
-\usepackage[margin = 1.5in]{geometry}
+%\usepackage[foot]{amsaddr}
+\usepackage[margin = 1in]{geometry}
+\usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
 \usepackage{amssymb}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{conjecture}[theorem]{Conjecture}
+
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\declaretheorem[name = Theorem, numberwithin = section]{theorem}
+\declaretheorem[name = Proposition, sibling = theorem]{proposition}
+\declaretheorem[name = Lemma, sibling = theorem]{lemma}
+\declaretheorem[name = Fact, sibling = theorem]{fact}
+\declaretheorem[name = Corollary, sibling = theorem]{corollary}
+\declaretheorem[name = Conjecture, sibling = theorem]{conjecture}
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{note}[theorem]{Note}
-\newtheorem{question}[theorem]{Question}
-%\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+\declaretheorem[name = Definition, sibling = theorem]{definition}
+\declaretheorem[name = Example, sibling = theorem]{example}
+\declaretheorem[name = Note, sibling = theorem]{note}
+\declaretheorem[name = Question, sibling = theorem]{question}
+\declaretheorem[name = Remark, sibling = theorem]{remark}
+
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\theoremstyle{definition}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{note}[theorem]{Note}
+%\newtheorem{question}[theorem]{Question}
+%%\theoremstyle{remark}
+%\newtheorem{remark}[theorem]{Remark}
+
 \numberwithin{equation}{section}
+
+\newcommand{\toc}{
+	\setlength{\parskip}{0em}
+	\tableofcontents
+	\setlength{\parskip}{1em}
+}
+\newcommand{\bib}{
+	\bibliographystyle{amsalpha}
+	\bibliography{references}
+}
 
 \usepackage[labelfont = bf, font = footnotesize]{caption}
 \captionsetup{belowskip=-10pt}
@@ -31,138 +60,8 @@
 \newcolumntype{R}{>{$}r<{$}}
 \DeclareTextFontCommand{\vocab}{\bfseries}
 \newcommand{\link}[1]{\href{https://#1}{\texttt{#1}}}
+\newcommand{\TODO}[1]{{\color{red}\textbf{TODO}: #1}}
 
-% PERSONAL DEFINITIONS
-
-% Algebra
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Bohr}{Bohr}
-\DeclareMathOperator{\chr}{char}
-\DeclareMathOperator{\Cl}{Cl}
-\DeclareMathOperator{\codim}{codim}
-\DeclareMathOperator{\fix}{fix}
-\DeclareMathOperator{\Gal}{Gal}
-\DeclareMathOperator{\GL}{GL}
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\img}{img}
-\newcommand{\injto}{\hookrightarrow}
-\newcommand{\innerproduct}[2]{\left\langle #1, #2 \right\rangle}
-\newcommand{\ip}[2]{\innerproduct{#1}{#2}}
-\newcommand{\norm}[1]{\left\lvert #1 \right\rvert}
-\DeclareMathOperator{\nul}{nul}
-\DeclareMathOperator{\Nul}{Nul}
-\DeclareMathOperator{\Orb}{Orb}
-\DeclareMathOperator{\rad}{rad}
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\SL}{SL}
-\DeclareMathOperator{\Span}{Span}
-\DeclareMathOperator{\spn}{span}
-\DeclareMathOperator{\srank}{slice-rank}
-\DeclareMathOperator{\Stab}{Stab}
-\DeclareMathOperator{\supp}{supp}
-\newcommand{\surjto}{\twoheadrightarrow}
-\DeclareMathOperator{\tow}{tow}
-\DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\trace}{tr}
-\newcommand{\tpose}{\intercal}
-\newcommand{\transpose}{\intercal}
-\newcommand{\vecabs}[1]{\left\lVert#1\right\rVert}
-\newcommand{\vecb}[1]{\mathbf{#1}}
-% Analysis
-\DeclareMathOperator{\Arg}{Arg}
-\DeclareMathOperator{\cis}{cis}
-\newcommand{\conjugate}[1]{\overline{#1}}
-\newcommand{\eps}{\epsilon}
-\DeclareMathOperator{\im}{im}
-\let\Im\relax\DeclareMathOperator{\Im}{Im}
-\DeclareMathOperator{\Log}{Log}
-\newcommand{\LT}{\mathcal{L}}
-\DeclareMathOperator{\re}{re}
-\let\Re\relax\DeclareMathOperator{\Re}{Re}
-% Calculus
-\let\d\relax\newcommand{\d}{\mathop{}\!\mathrm{d}}
-\newcommand{\dt}{\d t}
-\newcommand{\dw}{\d w}
-\newcommand{\dx}{\d x}
-\newcommand{\dy}{\d y}
-\newcommand{\dz}{\d z}
-\newcommand{\dtheta}{\d\theta}
-\newcommand{\dphi}{\d\phi}
-\newcommand{\dvarphi}{\d\varphi}
-\newcommand{\dr}{\d r}
-\newcommand{\du}{\d u}
-\newcommand{\dv}{\d v}
-\newcommand{\dV}{\d V}
-\newcommand{\dxy}{\dx\dy}
-\newcommand{\dyx}{\dy\dx}
-\newcommand{\dxz}{\dx\dz}
-\newcommand{\dzx}{\dz\dx}
-\newcommand{\dyz}{\dy\dz}
-\newcommand{\dzy}{\dz\dy}
-\newcommand{\dxyz}{\dx\dy\dz}
-\newcommand{\dxzy}{\dx\dz\dy}
-\newcommand{\dyxz}{\dy\dx\dz}
-\newcommand{\dyzx}{\dy\dz\dx}
-\newcommand{\dzxy}{\dz\dx\dy}
-\newcommand{\dzyx}{\dz\dy\dx}
-\newcommand{\dds}{\frac{\d}{\d s}}
-\newcommand{\ddt}{\frac{\d}{\dt}}
-\newcommand{\ddw}{\frac{\d}{\dw}}
-\newcommand{\ddx}{\frac{\d}{\dx}}
-\newcommand{\ddy}{\frac{\d}{\dy}}
-\newcommand{\ddz}{\frac{\d}{\dz}}
-% Discrete
-\DeclareMathOperator{\sgn}{sgn}
-% Geometry
-\newcommand{\arc}[1]{\wideparen{#1}}
-\DeclareMathOperator{\diam}{diam}
-\DeclareMathOperator{\Vol}{Vol}
-\DeclareMathOperator{\vol}{vol}
-% Graph Theory
-\DeclareMathOperator{\Cay}{Cay}
-\DeclareMathOperator{\codeg}{codeg}
-\DeclareMathOperator{\crossing}{cr}
-\DeclareMathOperator{\ex}{ex}
-% Number Theory
-\newcommand{\jacobi}[2]{\left(\frac{#1}{#2}\right)}
-\DeclareMathOperator{\lcm}{lcm}
-\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
-\DeclareMathOperator{\ord}{ord}
-% Parentheses/Brackets
-\newcommand{\paren}[1]{\left( #1 \right)}
-\newcommand{\brac}[1]{\left[ #1 \right]}
-\newcommand{\parenbrac}[1]{\left( #1 \right]}
-\newcommand{\bracparen}[1]{\left[ #1 \right)}
-\newcommand{\curlybrace}[1]{\left\{ #1 \right\}}
-% Probability Theory/Statistics
-\DeclareMathOperator{\EE}{\mathbb{E}}
-\newcommand{\EV}[1]{\mathbb{E}\left[#1\right]}
-\renewcommand{\P}[1]{\mathbb{P}\left(#1\right)}
-\DeclareMathOperator{\PP}{\mathbb{P}}
-\DeclareMathOperator{\Var}{Var}
-% Sets
-\newcommand{\card}[1]{\left\lvert #1 \right\rvert}
-\DeclareMathOperator{\CC}{\mathbb{C}}
-\newcommand{\comp}{\mathsf{c}}
-\let\complement\relax\newcommand{\complement}{\mathsf{c}}
-\DeclareMathOperator{\FF}{\mathbb{F}}
-\DeclareMathOperator{\NN}{\mathbb{N}}
-\DeclareMathOperator{\QQ}{\mathbb{Q}}
-\DeclareMathOperator{\RR}{\mathbb{R}}
-\newcommand{\set}[1]{\left\{#1\right\}}
-\newcommand{\st}{\,\middle\vert\,}
-\newcommand{\Zmod}[1]{\mathbb{Z}/#1\mathbb{Z}}
-\DeclareMathOperator{\ZZ}{\mathbb{Z}}
-% Special Functions
-\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
-\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
-\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
-\newcommand{\cycprod}{\displaystyle\prod_{\mathrm{cyc}}}
-\newcommand{\cycsum}{\displaystyle\sum_{\mathrm{cyc}}}
-\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
-\newcommand{\fracpart}[1]{\left\{#1\right\}}
-\newcommand{\symprod}{\displaystyle\prod_{\mathrm{sym}}}
-\newcommand{\symsum}{\displaystyle\sum_{\mathrm{sym}}}
+% Personal Definitions
+\usepackage{tssal-shortcuts}
+\renewcommand*{\reldesc}[3][black]{\stackrel{{\color{#1} #3}}{#2}}
